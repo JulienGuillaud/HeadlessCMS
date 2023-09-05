@@ -118,7 +118,7 @@ const SignUp = () => {
                            htmlType="submit"
                            className="login_submit_btn"
                         >
-                           Submit {isLoading && <Spin size="small" />}
+                           Submit {isLoading && <Spin size="small" className="spinner"/>}
                         </Button>
                      </Form.Item>
                   </Form>

@@ -21,7 +21,8 @@ const TodoPage = () => {
          .then((res) => res.json())
          .then((todo) => {
             setTodos(todo.data);
-         });
+         })
+
    }
 
    function addTodo(e) {
@@ -37,6 +38,7 @@ const TodoPage = () => {
          method: "POST",
          headers: {
             "Content-type": "application/json",
+            "Authorization": `Bearer ${getToken()}`,
          },
          body: JSON.stringify(body),
       }).then(() => {
@@ -47,32 +49,8 @@ const TodoPage = () => {
 
    const [loading, setLoading] = useState(false);
 
-   const handleProfileUpdate = async (data) => {
-      setLoading(true);
-      try {
-         const response = await fetch(`${API}/users/${user.id}`, {
-            method: "PUT",
-            headers: {
-               "Content-Type": "application/json",
-               // set the auth token to the user's jwt
-               Authorization: `Bearer ${getToken()}`,
-            },
-            body: JSON.stringify(data),
-         });
-         const responseData = await response.json();
-
-         setUser(responseData);
-         message.success("Data saved successfully!");
-      } catch (error) {
-         console.error(Error);
-         message.error("Error While Updating the Profile!");
-      } finally {
-         setLoading(false);
-      }
-   };
-
    if (isLoading) {
-      return <Spin size="large" />;
+      return <Spin size="large" className="spinner"/>;
    }
 
    return (

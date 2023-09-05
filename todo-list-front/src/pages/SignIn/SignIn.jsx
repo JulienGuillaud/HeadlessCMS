@@ -53,7 +53,7 @@ const SignIn = () => {
 
             message.success(`Welcome back ${data.user.username}!`);
 
-            navigate("/", { replace: true });
+            navigate("/ToDoPage", { replace: true });
          }
       } catch (error) {
          console.error(error);
@@ -110,7 +110,7 @@ const SignIn = () => {
                            htmlType="submit"
                            className="login_submit_btn"
                         >
-                           Login {isLoading && <Spin size="small" />}
+                           Login {isLoading && <Spin size="small" className="spinner"/>}
                         </Button>
                      </Form.Item>
                   </Form>

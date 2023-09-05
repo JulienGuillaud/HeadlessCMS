@@ -34,7 +34,7 @@ const Profile = () => {
   };
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return <Spin size="large" className="spinner"/>;
   }
 
   return (
@@ -76,19 +76,6 @@ const Profile = () => {
               ]}
             >
               <Input placeholder="Email" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Avatar Url"
-              name="avatar_url"
-              rules={[
-                {
-                  type: "url",
-                },
-              ]}
-            >
-              <Input placeholder="Avatar Url" />
             </Form.Item>
           </Col>
         </Row>
