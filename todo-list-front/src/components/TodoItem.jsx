@@ -4,6 +4,8 @@ import { useAuthContext } from "../context/AuthContext";
 
 function TodoItem({ todo, update }) {
 
+   const { user } = useAuthContext();
+
    const [edit, setEdit] = useState(false);
    const [newTodo, setNewTodo] = useState("");
 
@@ -23,6 +25,7 @@ function TodoItem({ todo, update }) {
             method: "PUT",
             headers: {
                "Content-type": "application/json",
+               "Authorization": "Bearer " + user.jwt
             },
             body: JSON.stringify(body),
          }).then(() => {

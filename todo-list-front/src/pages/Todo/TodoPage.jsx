@@ -82,7 +82,7 @@ const TodoPage = () => {
    }
 
    return (
-      <div>
+      <div className="mainDiv">
          {/* <button className="logout" onClick={logout}>
             Logout
          </button> */}
