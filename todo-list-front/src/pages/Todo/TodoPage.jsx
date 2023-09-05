@@ -4,7 +4,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { API } from "../../constant";
 import { useState } from "react";
 import { getToken } from "../../helpers";
-import TodoItem from "../../components/TodoItem";
+import TodoItem from "../../components/ToDoItem/TodoItem";
 
 
 const TodoPage = () => {
@@ -13,21 +13,15 @@ const TodoPage = () => {
    const [newTodo, setNewTodo] = useState("");
 
    useEffect(() => {
-      if (user) {
-         update();
-      }
+      update();
    }, []);
 
    function update() {
-      if (user) {
-         fetch(`http://localhost:1337/api/todos`)
-            .then((res) => res.json())
-            .then((todo) => {
-               setTodos(todo.data);
-            });
-      } else {
-         setTodos([]);
-      }
+      fetch(`http://localhost:1337/api/todos`)
+         .then((res) => res.json())
+         .then((todo) => {
+            setTodos(todo.data);
+         });
    }
 
    function addTodo(e) {

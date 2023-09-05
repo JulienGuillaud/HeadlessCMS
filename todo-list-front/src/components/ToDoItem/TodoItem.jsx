@@ -1,16 +1,16 @@
 import { useState } from "react";
-import "../App.css";
-import { useAuthContext } from "../context/AuthContext";
+import "../../App.css";
+import { useAuthContext } from "../../context/AuthContext";
+import { getToken } from "../../helpers";
 
 function TodoItem({ todo, update }) {
-
    const { user } = useAuthContext();
 
    const [edit, setEdit] = useState(false);
    const [newTodo, setNewTodo] = useState("");
 
    function changeTodo(e) {
-      console.log("changeTodo")
+      console.log("changeTodo");
       if (user) {
          e.preventDefault();
          let item = newTodo;
@@ -20,12 +20,11 @@ function TodoItem({ todo, update }) {
                item,
             },
          };
-
          fetch(`http://localhost:1337/api/todos/${pos}`, {
             method: "PUT",
             headers: {
                "Content-type": "application/json",
-               "Authorization": "Bearer " + user.jwt
+               "Authorization": "Bearer " + getToken(),
             },
             body: JSON.stringify(body),
          }).then(() => {
@@ -36,27 +35,30 @@ function TodoItem({ todo, update }) {
    }
 
    function deleteTodo(e) {
-      if (user){
+      if (user) {
          e.preventDefault();
          let pos = todo.id;
 
          fetch(`http://localhost:1337/api/todos/${pos}`, {
             method: "DELETE",
+            headers:{
+               "Authorization": "Bearer " + getToken(),
+            }
          }).then(() => {
             update();
          });
       }
    }
 
-   function setChecked(){
-      if (user){
+   function setChecked() {
+      if (user) {
          let pos = todo.id;
          let item = todo.attributes.item;
          let value = !todo.attributes.done;
          let body = {
             data: {
                item,
-               done:value,
+               done: value,
             },
          };
 
@@ -64,6 +66,7 @@ function TodoItem({ todo, update }) {
             method: "PUT",
             headers: {
                "Content-type": "application/json",
+               "Authorization": "Bearer " + getToken(),
             },
             body: JSON.stringify(body),
          }).then(() => {
@@ -72,11 +75,18 @@ function TodoItem({ todo, update }) {
       }
    }
 
-   console.log("todo "+todo.id+" done : "+todo.attributes.done)
+   console.log("todo " + todo.id + " done : " + todo.attributes.done);
    return (
       <div className="todo">
          <div>
-               <input type="checkbox" className="checkInput" onChange={(e) => {setChecked()}} defaultChecked={todo.attributes.done}></input>
+            <input
+               type="checkbox"
+               className="checkInput"
+               onChange={(e) => {
+                  setChecked();
+               }}
+               defaultChecked={todo.attributes.done}
+            ></input>
          </div>
          {!edit ? (
             <div className="name">{todo.attributes.item}</div>
