@@ -101,7 +101,19 @@ function App() {
         <div>
           {
             todos.map((todo, i) => {
-              return <TodoItem todo={todo} key={i} update={update} />
+              if(!todo.attributes.done){
+                return <TodoItem todo={todo} key={i} update={update} />
+              }
+            })
+          }
+        </div>
+        <div className='todoDoneDiv'>
+          <div className='doneTitle'>DONE</div>
+          {
+            todos.map((todo, i) => {
+              if(todo.attributes.done){
+                return <TodoItem todo={todo} key={i} update={update} />
+              }
             })
           }
         </div>

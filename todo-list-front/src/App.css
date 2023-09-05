@@ -63,7 +63,7 @@
       text-align: left;
     }
 
-    .logout{
+    .logout {
       position: absolute;
       top: 0;
       right: 0;
@@ -74,10 +74,10 @@
       color: white;
       font-weight: 700;
       font-size: medium;
-      
+
     }
 
-    .checkInput{
+    .checkInput {
       -webkit-appearance: none;
       appearance: none;
       color: #ea4c87;
@@ -90,7 +90,7 @@
       cursor: pointer;
     }
 
-    .checkInput:checked{
+    .checkInput:checked {
       position: relative;
     }
 
@@ -107,7 +107,38 @@
       box-shadow: 0 0 5px #ea4c87;
     }
 
-    .connectFormBG{
+    .doneTitle {
+      font-size: large;
+      font-weight: 800;
+      color: #ea4c87;
+    }
+
+    .todoDoneDiv {
+      margin-top: 50px;
+    }
+
+    .todoDoneDiv .edit{
+      background-color: #ea4c8680;
+    }
+    .todoDoneDiv .delete{
+      border-color: #ea4c8680;
+      color: #ea4c8680;
+    }
+    .todoDoneDiv .checkInput:checked::before{
+      color: #ea4c8680;
+    }
+    .todoDoneDiv .checkInput{
+      color: #ea4c8680;
+      border-color: #ea4c8680;
+    }
+    .todoDoneDiv .checkInput:hover {
+      box-shadow: 0 0 5px #ea4c8680;
+    }
+    .todoDoneDiv .name{
+      color: #898989;
+    }
+
+    .connectFormBG {
       position: absolute;
       top: 0;
       left: 0;
@@ -117,7 +148,7 @@
       z-index: 2;
     }
 
-    .connectFormWrapper{
+    .connectFormWrapper {
       z-index: 4;
       width: 30vw;
       padding-top: 5vh;
@@ -214,7 +245,8 @@
       background-color: #ea4c87;
       border-radius: 5px;
     }
-    .signup{
+
+    .signup {
       color: #ea4c87;
       background-color: #00000000;
       border: none;
