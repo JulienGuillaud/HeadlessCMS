@@ -1,17 +1,15 @@
 import { useState } from "react";
 import "../App.css";
-import Cookies from 'universal-cookie';
+import { useAuthContext } from "../context/AuthContext";
 
 function TodoItem({ todo, update }) {
-   const cookies = new Cookies();
 
    const [edit, setEdit] = useState(false);
    const [newTodo, setNewTodo] = useState("");
 
    function changeTodo(e) {
       console.log("changeTodo")
-      console.log(cookies.get("connected"))
-      if (cookies.get("connected")) {
+      if (user) {
          e.preventDefault();
          let item = newTodo;
          let pos = todo.id;
@@ -35,7 +33,7 @@ function TodoItem({ todo, update }) {
    }
 
    function deleteTodo(e) {
-      if (cookies.get('connected')){
+      if (user){
          e.preventDefault();
          let pos = todo.id;
 
@@ -48,7 +46,7 @@ function TodoItem({ todo, update }) {
    }
 
    function setChecked(){
-      if (cookies.get('connected')){
+      if (user){
          let pos = todo.id;
          let item = todo.attributes.item;
          let value = !todo.attributes.done;

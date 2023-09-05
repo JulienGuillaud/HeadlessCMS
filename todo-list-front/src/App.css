@@ -4,11 +4,23 @@
       text-align: center;
     }
 
+    form .todo_input {
+      height: 17px;
+      padding: 10px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border: 2px solid #ea4c87;
+    }
     .todo_input {
       height: 16px;
       padding: 10px;
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
+      border: 2px solid #ea4c87;
+      margin-top: 3px;
+    }
+
+    .todo_input:focus {
       border: 2px solid #ea4c87;
     }
 
@@ -27,6 +39,7 @@
       font-weight: 700;
       margin-bottom: 5px;
       min-width: 340px;
+      align-items: center;
     }
 
     .edit {
@@ -35,7 +48,7 @@
       background: #ea4c87;
       border: none;
       border-top-right-radius: 5px;
-      height: 33px;
+      height: 45px;
       border-bottom-right-radius: 5px;
       color: white;
       font-size: medium;
@@ -47,7 +60,7 @@
       background: white;
       border: 2px solid #ea4c87;
       border-top-left-radius: 5px;
-      height: 33px;
+      height: 45px;
       color: #ea4c87;
       border-bottom-left-radius: 5px;
       font-size: medium;
@@ -59,8 +72,14 @@
     }
 
     .name {
-      max-width: 190.34px;
+      min-width: 265px;
       text-align: left;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
     }
 
     .logout {
@@ -74,7 +93,7 @@
       color: white;
       font-weight: 700;
       font-size: medium;
-
+      border: none;
     }
 
     .checkInput {
@@ -85,9 +104,10 @@
       font-weight: 700;
       background: white;
       border: 2px solid #ea4c87;
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
+      margin-top: 8px;
     }
 
     .checkInput:checked {
@@ -117,24 +137,29 @@
       margin-top: 50px;
     }
 
-    .todoDoneDiv .edit{
+    .todoDoneDiv .edit {
       background-color: #ea4c8680;
     }
-    .todoDoneDiv .delete{
+
+    .todoDoneDiv .delete {
       border-color: #ea4c8680;
       color: #ea4c8680;
     }
-    .todoDoneDiv .checkInput:checked::before{
+
+    .todoDoneDiv .checkInput:checked::before {
       color: #ea4c8680;
     }
-    .todoDoneDiv .checkInput{
+
+    .todoDoneDiv .checkInput {
       color: #ea4c8680;
       border-color: #ea4c8680;
     }
+
     .todoDoneDiv .checkInput:hover {
       box-shadow: 0 0 5px #ea4c8680;
     }
-    .todoDoneDiv .name{
+
+    .todoDoneDiv .name {
       color: #898989;
     }
 
