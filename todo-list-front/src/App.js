@@ -7,6 +7,9 @@ function App() {
   const cookies = new Cookies();
 
 
+  const [showFormBG, setShowFormBG] = useState(!cookies.get('connected'))
+  const [showSignUp, setShowSignUp] = useState(false)
+  const [showSignIn, setShowSignIn] = useState(!cookies.get('connected'))
   const [connected, setConnected] = useState(cookies.get('connected'))
   const [error, setError] = useState("");
 
@@ -18,6 +21,17 @@ function App() {
     cookies.set('connected', 'false', { path: '/' });// Pacman
     setConnected(false);
     update();
+    showLoginPopup(true);
+  }
+
+  function signup(){
+    setShowSignUp(true);
+    setShowSignIn(false);
+  }
+
+  function showLoginPopup(show){
+    setShowSignIn(show);
+    setShowFormBG(show);
   }
 
   function connect() {
@@ -25,6 +39,7 @@ function App() {
     let password = document.querySelector('.password').value;
     if (login === 'admin' && password === 'admin') {
       setConnected(true);
+      showLoginPopup();
       cookies.set('connected', 'true', { path: '/' });// Pacman
       update();
     } else {
@@ -32,6 +47,7 @@ function App() {
       setError('Login or password is incorrect');
     }
   }
+
 
   useEffect(() => {
     if (connected) {
@@ -46,6 +62,8 @@ function App() {
         .then(todo => {
           setTodos(todo.data);
         })
+    }else{
+      setTodos([]);
     }
   }
 
@@ -87,8 +105,8 @@ function App() {
             })
           }
         </div>
-
-        {!connected ? <div className='connectFormBG'><div className='connectFormWrapper'><form className="form">
+{showFormBG ? <div className='connectFormBG'></div> : null}
+        {showSignIn ? <div className='connectFormWrapper'><form className="form">
           {/* ICON LOGIN */}
           <div className='loginInput'>
             <img src="https://img.icons8.com/?size=512&id=34105&format=png" alt="login" />
@@ -100,7 +118,8 @@ function App() {
           </div>
           <div>{error}</div>
           <button type="button" className="connect" onClick={connect}>Connect</button>
-        </form> </div></div>: null}
+          <button type="button" className="signup" onClick={signup}>sign-up</button>
+        </form></div>: null}
 
       </main>
     </div>
