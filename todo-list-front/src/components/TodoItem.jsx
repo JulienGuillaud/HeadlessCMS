@@ -47,13 +47,36 @@ function TodoItem({ todo, update }) {
       }
    }
 
+   function setChecked(){
+      if (cookies.get('connected')){
+         let pos = todo.id;
+         let item = todo.attributes.item;
+         let value = !todo.attributes.done;
+         let body = {
+            data: {
+               item,
+               done:value,
+            },
+         };
+
+         fetch(`http://localhost:1337/api/todos/${pos}`, {
+            method: "PUT",
+            headers: {
+               "Content-type": "application/json",
+            },
+            body: JSON.stringify(body),
+         }).then(() => {
+            update();
+         });
+      }
+   }
+
+   console.log("todo "+todo.id+" done : "+todo.attributes.done)
    return (
       <div className="todo">
-         {/*
-      The below toggles between two components
-      depending on the current value of the "edit"
-      state variable
-    */}
+         <div>
+               <input type="checkbox" className="checkInput" onChange={(e) => {setChecked()}} defaultChecked={todo.attributes.done}></input>
+         </div>
          {!edit ? (
             <div className="name">{todo.attributes.item}</div>
          ) : (
@@ -77,13 +100,7 @@ function TodoItem({ todo, update }) {
             <button
                className="edit"
                onClick={() => {
-                  // this button toggles the "edit" state variable
                   setEdit(!edit);
-
-                  // we add this snippet below to make sure that our "input"
-                  // for editing is the same as the one for the component when
-                  // it is toggled. This allows anyone using it to see the current
-                  // value in the element, so they don't have to write it again
                   setNewTodo(todo.attributes.item);
                }}
             >
